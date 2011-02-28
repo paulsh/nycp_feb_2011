@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace nothinbutdotnetprep.collections
@@ -19,12 +20,23 @@ namespace nothinbutdotnetprep.collections
 
         public void add(Movie movie)
         {
-            throw new NotImplementedException();
+            if (this.movies.Contains(movie)) return;
+
+            foreach (Movie m in movies)
+            {
+                if (m.title.Equals(movie.title,StringComparison.InvariantCultureIgnoreCase)) return;
+            }
+
+            movies.Add(movie);
         }
 
         public IEnumerable<Movie> sort_all_movies_by_title_descending
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                throw new NotImplementedException();
+                //return ArrayList.Adapter(movies).Sort();
+            }
         }
 
         public IEnumerable<Movie> all_movies_published_by_pixar()
